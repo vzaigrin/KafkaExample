@@ -1,0 +1,13 @@
+*.class
+*.log
+**/.bsp/
+**/.idea
+**/target/scala-2.13/classes/
+**/target/scala-2.13/update/
+**/target/scala-2.13/zinc/
+**/target/scala-2.12/classes/
+**/target/scala-2.12/update/
+**/target/scala-2.12/zinc/
+**/target/streams/
+**/project/project/
+**/project/target/
