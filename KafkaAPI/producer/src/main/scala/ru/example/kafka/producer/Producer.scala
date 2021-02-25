@@ -32,16 +32,8 @@ object Producer {
     // Преобразовываем записи в JSON и отправляем в Kafka
     try {
       records.forEach { r =>
-        val b = Book(
-          r.get("Name"),
-          r.get("Author"),
-          r.get("User Rating").toFloat,
-          r.get("Reviews").toLong,
-          r.get("Price").toInt,
-          r.get("Year").toInt,
-          r.get("Genre")
-        )
-        producer.send(new ProducerRecord(topic, r.getRecordNumber.toString, b.asJson.noSpaces))
+        val b = Book(r).asJson.noSpaces
+        producer.send(new ProducerRecord(topic, r.getRecordNumber.toString, b))
       }
     } catch {
       case e: Exception =>
