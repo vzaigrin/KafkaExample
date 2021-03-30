@@ -3,6 +3,7 @@ package ru.example.kafka.consumer
 import com.typesafe.config.ConfigFactory
 import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.apache.kafka.common.serialization.StringDeserializer
+
 import java.time.Duration
 import java.util.Properties
 import scala.jdk.CollectionConverters.IterableHasAsJava
@@ -34,9 +35,11 @@ object Consumer {
       }
 
       // Читаем и выводим последние 5 записей из каждой секции
-      consumer
-        .poll(Duration.ofSeconds(1))
-        .forEach { msg => println(s"${msg.partition}\t${msg.offset}\t${msg.key}\t${msg.value}") }
+      (1 to topicPartitions.toArray.length).foreach { _ =>
+        consumer
+          .poll(Duration.ofSeconds(1))
+          .forEach { msg => println(s"${msg.partition}\t${msg.offset}\t${msg.key}\t${msg.value}") }
+      }
     } catch {
       case e: Exception =>
         println(e.getLocalizedMessage)
