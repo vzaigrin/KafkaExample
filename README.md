@@ -14,3 +14,4 @@
 * *KafkaAPI* - решение на стандартном [Kafka API](http://kafka.apache.org/documentation/#api).
 * *AlpakkaKafka* - решение на [Akka Streams](https://doc.akka.io/docs/akka/current/stream/index.html) и [Alpakka Kafka](https://doc.akka.io/docs/alpakka-kafka/current/index.html).
 * *StructuredStreaming* - решение на [Spark Structured Streaming](http://spark.apache.org/docs/latest/structured-streaming-programming-guide.html).
+* *ZIOKafka* - решение построено на [ZIO Streams](https://zio.dev/version-1.x/datatypes/stream/) и [ZIO Kafka](https://github.com/zio/zio-kafka).
