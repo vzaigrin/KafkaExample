@@ -3,10 +3,10 @@ ThisBuild / version := "1.0"
 ThisBuild / scalaVersion := "2.13.4"
 
 lazy val configVersion  = "1.4.1"
-lazy val kafkaVersion   = "2.7.0"
+lazy val kafkaVersion   = "3.0.0"
 lazy val csvVersion     = "1.8"
-lazy val circeVersion   = "0.13.0"
-lazy val logbackVersion = "1.2.3"
+lazy val circeVersion   = "0.14.1"
+lazy val logbackVersion = "1.2.10"
 
 ThisBuild / libraryDependencies ++= Seq(
   "com.typesafe"       % "config"          % configVersion,
@@ -19,9 +19,9 @@ ThisBuild / libraryDependencies ++= Seq(
 )
 
 lazy val producer = project
-  .settings(mainClass in assembly := Some("ru.example.kafka.producer.Producer"))
-  .settings(assemblyJarName in assembly := "producer.jar")
+  .settings(assembly / mainClass := Some("ru.example.kafka.producer.Producer"))
+  .settings(assembly / assemblyJarName := "producer.jar")
 
 lazy val consumer = project
-  .settings(mainClass in assembly := Some("ru.example.kafka.consumer.Consumer"))
-  .settings(assemblyJarName in assembly := "consumer.jar")
+  .settings(assembly / mainClass := Some("ru.example.kafka.consumer.Consumer"))
+  .settings(assembly / assemblyJarName := "consumer.jar")
