@@ -1,4 +1,4 @@
 # Kafka: примеры приложений
 
 * **KafkaReadWrite** - запись в Kafka и чтение из Kafka
-* **KafkaPerfTest** - тестирования производительности
+* **KafkaPerfTest** - тестирование производительности
