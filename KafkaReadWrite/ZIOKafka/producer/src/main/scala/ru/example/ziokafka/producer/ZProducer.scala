@@ -7,7 +7,7 @@ import zio._
 import zio.blocking.Blocking
 import zio.clock.Clock
 import zio.config.magnolia.descriptor
-import zio.config.typesafe.TypesafeConfigSource
+import zio.config.typesafe._
 import zio.console.Console
 import zio.duration.durationInt
 import zio.kafka.producer.{Producer, ProducerSettings}
@@ -29,17 +29,23 @@ object ZProducer extends zio.App {
 
   val appConfig: Task[AppConfig] =
     for {
-      rawConfig    <- ZIO.effect(ConfigFactory.load().getConfig("producer"))
-      configSource <- ZIO.fromEither(TypesafeConfigSource.fromTypesafeConfig(rawConfig))
+      rawConfig <- ZIO.effect(ConfigFactory.load().getConfig("producer"))
+      configSource <- ZIO.fromEither(
+        TypesafeConfigSource.fromTypesafeConfig(rawConfig)
+      )
       desc = descriptor[AppConfig] from configSource
       config <- ZIO.fromEither(read(desc))
     } yield config
 
   def producer(
       appConfig: AppConfig
-  ): ZStream[Any with Has[Producer] with Logging with Clock, Throwable, Nothing] = {
-    val in      = new FileReader(appConfig.filename)
-    val records = CSVFormat.RFC4180.withFirstRecordAsHeader.parse(in).iterator()
+  ): ZStream[Any with Has[
+    Producer
+  ] with Logging with Clock, Throwable, Nothing] = {
+    val in = new FileReader(appConfig.filename)
+    val csvFormat =
+      CSVFormat.RFC4180.builder().setHeader().setSkipHeaderRecord(true).build()
+    val records = csvFormat.parse(in).iterator()
 
     ZStream
       .fromJavaIterator(records)

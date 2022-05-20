@@ -2,11 +2,11 @@ ThisBuild / organization := "ru.example"
 ThisBuild / version := "1.0"
 ThisBuild / scalaVersion := "2.13.4"
 
-lazy val configVersion  = "1.4.1"
-lazy val kafkaVersion   = "3.0.0"
-lazy val csvVersion     = "1.8"
+lazy val configVersion  = "1.4.2"
+lazy val kafkaVersion   = "3.1.0"
+lazy val csvVersion     = "1.9.0"
 lazy val circeVersion   = "0.14.1"
-lazy val logbackVersion = "1.2.10"
+lazy val logbackVersion = "1.2.11"
 
 ThisBuild / libraryDependencies ++= Seq(
   "com.typesafe"       % "config"          % configVersion,
