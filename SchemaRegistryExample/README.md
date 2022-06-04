@@ -4,7 +4,7 @@
 
 ## Запуск
 
-* Запускаем сервисы *docker-compose up -d*
+* Запускаем сервисы: *docker-compose up -d*
 * Создаём топик: *kafka-topics.sh --create --topic test --bootstrap-server localhost:29092*
 * Запускаем producer: *java -jar producer.jar*
 * Запускаем consumer: *java -jar consumer*
