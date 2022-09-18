@@ -23,8 +23,10 @@ object Producer {
     val topic    = config.getString("topic")
 
     // Читаем файл с данными
-    val in      = new FileReader(config.getString("input"))
-    val records = CSVFormat.RFC4180.withFirstRecordAsHeader.parse(in)
+    val in = new FileReader(config.getString("input"))
+    val csvFormat =
+      CSVFormat.RFC4180.builder().setHeader().setSkipHeaderRecord(true).build()
+    val records = csvFormat.parse(in)
 
     // Encoder для Book
     implicit val bookEncoder: Encoder[Book] = deriveEncoder[Book]
