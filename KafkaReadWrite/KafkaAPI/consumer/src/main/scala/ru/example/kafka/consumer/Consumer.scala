@@ -3,7 +3,6 @@ package ru.example.kafka.consumer
 import com.typesafe.config.ConfigFactory
 import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.apache.kafka.common.serialization.StringDeserializer
-
 import java.time.Duration
 import java.util.Properties
 import scala.jdk.CollectionConverters.IterableHasAsJava
