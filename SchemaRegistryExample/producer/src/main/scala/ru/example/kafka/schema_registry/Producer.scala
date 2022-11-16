@@ -1,14 +1,13 @@
 package ru.example.kafka.schema_registry
 
 import com.typesafe.config.ConfigFactory
-import org.apache.kafka.clients.producer.{KafkaProducer, ProducerConfig, ProducerRecord}
-import org.apache.kafka.common.serialization.{LongSerializer, StringSerializer}
 import io.confluent.kafka.serializers.{AbstractKafkaSchemaSerDeConfig, KafkaAvroSerializer}
+import org.apache.avro.Schema
+import org.apache.avro.generic.{GenericData, GenericRecord}
+import org.apache.kafka.clients.producer.{KafkaProducer, ProducerConfig, ProducerRecord}
+import org.apache.kafka.common.serialization.LongSerializer
 import java.util.Properties
 import scala.util.{Failure, Success, Using}
-import org.apache.avro.Schema
-import org.apache.avro.generic.GenericData
-import org.apache.avro.generic.GenericRecord
 
 object Producer {
   def main(args: Array[String]): Unit = {
@@ -36,7 +35,7 @@ object Producer {
       val schema1: Schema            = parser1.parse(paymentSchema1)
       val avroRecord1: GenericRecord = new GenericData.Record(schema1)
       avroRecord1.put("amount", 1000.00)
-      send10(producer, topic, avroRecord1)
+      sendN(producer, topic, avroRecord1, 10)
 
       // Отправляем 10 записей со схемой 2
       val parser2: Schema.Parser = new Schema.Parser()
@@ -46,16 +45,15 @@ object Producer {
       val avroRecord2: GenericRecord = new GenericData.Record(schema2)
       avroRecord2.put("amount", 2000.00)
       avroRecord2.put("region", "Moscow")
-      send10(producer, topic, avroRecord2)
+      sendN(producer, topic, avroRecord2, 10)
     } match {
       case Failure(ex) => println(ex.getLocalizedMessage)
       case Success(_)  =>
     }
   }
 
-  def send10(producer: KafkaProducer[Long, GenericRecord], topic: String, avroRecord: GenericRecord): Unit = {
-    (0 until 10).foreach { i =>
-//      val orderId = s"id$i"
+  def sendN(producer: KafkaProducer[Long, GenericRecord], topic: String, avroRecord: GenericRecord, n: Int): Unit = {
+    (0 until n).foreach { i =>
       val orderId = i.toLong
       avroRecord.put("id", orderId)
       val record = new ProducerRecord(topic, orderId, avroRecord)
@@ -63,6 +61,6 @@ object Producer {
       Thread.sleep(1000L)
     }
     producer.flush()
-    println(s"Successfully produced 10 messages to a topic called $topic")
+    println(s"Successfully produced $n messages to a topic called $topic")
   }
 }

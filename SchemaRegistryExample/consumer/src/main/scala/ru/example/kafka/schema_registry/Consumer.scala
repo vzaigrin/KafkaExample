@@ -4,11 +4,11 @@ import com.typesafe.config.ConfigFactory
 import io.confluent.kafka.serializers.{AbstractKafkaSchemaSerDeConfig, KafkaAvroDeserializer}
 import org.apache.avro.generic.GenericRecord
 import org.apache.kafka.clients.consumer.{ConsumerConfig, ConsumerRecords, KafkaConsumer}
-import org.apache.kafka.common.serialization.{LongDeserializer, StringDeserializer}
-import java.util.Properties
+import org.apache.kafka.common.serialization.LongDeserializer
 import java.time.Duration
-import scala.util.{Failure, Success, Using}
+import java.util.Properties
 import scala.jdk.CollectionConverters._
+import scala.util.{Failure, Success, Using}
 
 object Consumer {
   def main(args: Array[String]): Unit = {
