@@ -29,6 +29,21 @@ object Consumer {
     Using.Manager { use =>
       val consumer = use(new KafkaConsumer[Long, GenericRecord](props))
       consumer.subscribe(List(topic).asJava)
+
+      // Registering a shutdown hook so we can exit cleanly
+      val mainThread: Thread = Thread.currentThread
+      Runtime.getRuntime.addShutdownHook(new Thread() {
+        override def run(): Unit = {
+          println("Starting exit...")
+          // Note that shutdownhook runs in a separate thread, so the only thing we can safely do to a consumer is wake it up
+          consumer.wakeup()
+          try mainThread.join()
+          catch {
+            case e: InterruptedException => e.printStackTrace()
+          }
+        }
+      })
+
       while (true) {
         val records: ConsumerRecords[Long, GenericRecord] = consumer.poll(Duration.ofSeconds(1))
         records.forEach { record =>
