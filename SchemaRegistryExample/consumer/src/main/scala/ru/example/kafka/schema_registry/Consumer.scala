@@ -9,6 +9,7 @@ import java.time.Duration
 import java.util.Properties
 import scala.jdk.CollectionConverters._
 import scala.util.{Failure, Success, Using}
+import org.apache.kafka.common.errors.WakeupException
 
 object Consumer {
   def main(args: Array[String]): Unit = {
@@ -34,7 +35,7 @@ object Consumer {
       val mainThread: Thread = Thread.currentThread
       Runtime.getRuntime.addShutdownHook(new Thread() {
         override def run(): Unit = {
-          println("Starting exit...")
+          println("\nStarting exit...")
           // Note that shutdownhook runs in a separate thread, so the only thing we can safely do to a consumer is wake it up
           consumer.wakeup()
           try mainThread.join()
@@ -44,14 +45,21 @@ object Consumer {
         }
       })
 
-      while (true) {
-        val records: ConsumerRecords[Long, GenericRecord] = consumer.poll(Duration.ofSeconds(1))
-        records.forEach { record =>
-          val offset: Long         = record.offset()
-          val key: Long            = record.key
-          val value: GenericRecord = record.value
-          println(s"offset = $offset\tkey = $key\tvalue = $value")
+      try {
+        while (true) {
+          val records: ConsumerRecords[Long, GenericRecord] = consumer.poll(Duration.ofSeconds(1))
+          records.forEach { record =>
+            val offset: Long         = record.offset()
+            val key: Long            = record.key
+            val value: GenericRecord = record.value
+            println(s"offset = $offset\tkey = $key\tvalue = $value")
+          }
         }
+      } catch {
+        case _: WakeupException =>
+      } finally {
+        consumer.close()
+        println("Closed consumer and we are done")
       }
     } match {
       case Failure(ex) => println(ex.getLocalizedMessage)
