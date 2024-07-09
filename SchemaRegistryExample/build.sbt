@@ -8,7 +8,7 @@ ThisBuild / libraryDependencies ++= Seq(
   "com.typesafe"     % "config"                % "1.4.2",
   "org.apache.kafka" % "kafka-clients"         % "3.4.0",
   "io.confluent"     % "kafka-avro-serializer" % "7.4.0",
-  "ch.qos.logback"   % "logback-classic"       % "1.4.6"
+  "ch.qos.logback"   % "logback-classic"       % "1.4.7"
 )
 
 lazy val producer = project

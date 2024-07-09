@@ -37,7 +37,7 @@ object Producer {
       avroRecord1.put("amount", 1000.00)
       sendN(producer, topic, avroRecord1, 10)
 
-      // Отправляем 10 записей со схемой 2
+      // Отправляем 15 записей со схемой 2
       val parser2: Schema.Parser = new Schema.Parser()
       val paymentSchema2 =
         "{\"type\":\"record\", \"name\":\"Payment\", \"fields\":[{\"name\": \"id\", \"type\": \"long\"}, {\"name\": \"amount\", \"type\": \"double\"}, {\"name\": \"region\", \"type\": \"string\", \"default\": \"\"}]}"
@@ -45,7 +45,7 @@ object Producer {
       val avroRecord2: GenericRecord = new GenericData.Record(schema2)
       avroRecord2.put("amount", 2000.00)
       avroRecord2.put("region", "Moscow")
-      sendN(producer, topic, avroRecord2, 10)
+      sendN(producer, topic, avroRecord2, 15)
     } match {
       case Failure(ex) => println(ex.getLocalizedMessage)
       case Success(_)  =>
