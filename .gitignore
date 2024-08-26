@@ -7,6 +7,7 @@
 **/.idea/
 **/.metals/
 **/.vscode/
+**/*.jar
 **/global-logging/
 **/target/scala-2.13/classes/
 **/target/scala-2.13/update/
