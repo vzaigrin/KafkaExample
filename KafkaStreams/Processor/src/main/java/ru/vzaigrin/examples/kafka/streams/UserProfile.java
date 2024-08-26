@@ -13,10 +13,10 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class UserProfile extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -3531467004631654518L;
+  private static final long serialVersionUID = 1713007827119886904L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"UserProfile\",\"namespace\":\"ru.ibs.kafka.advanced.streams\",\"fields\":[{\"name\":\"user\",\"type\":\"string\"},{\"name\":\"experience\",\"type\":[\"null\",\"string\"],\"default\":null},{\"name\":\"region\",\"type\":\"string\"}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"UserProfile\",\"namespace\":\"ru.vzaigrin.examples.kafka.streams\",\"fields\":[{\"name\":\"user\",\"type\":\"string\"},{\"name\":\"experience\",\"type\":[\"null\",\"string\"],\"default\":null},{\"name\":\"region\",\"type\":\"string\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
@@ -179,8 +179,8 @@ public class UserProfile extends org.apache.avro.specific.SpecificRecordBase imp
    * Creates a new UserProfile RecordBuilder.
    * @return A new UserProfile RecordBuilder
    */
-  public static UserProfile.Builder newBuilder() {
-    return new UserProfile.Builder();
+  public static ru.vzaigrin.examples.kafka.streams.UserProfile.Builder newBuilder() {
+    return new ru.vzaigrin.examples.kafka.streams.UserProfile.Builder();
   }
 
   /**
@@ -188,11 +188,11 @@ public class UserProfile extends org.apache.avro.specific.SpecificRecordBase imp
    * @param other The existing builder to copy.
    * @return A new UserProfile RecordBuilder
    */
-  public static UserProfile.Builder newBuilder(UserProfile.Builder other) {
+  public static ru.vzaigrin.examples.kafka.streams.UserProfile.Builder newBuilder(ru.vzaigrin.examples.kafka.streams.UserProfile.Builder other) {
     if (other == null) {
-      return new UserProfile.Builder();
+      return new ru.vzaigrin.examples.kafka.streams.UserProfile.Builder();
     } else {
-      return new UserProfile.Builder(other);
+      return new ru.vzaigrin.examples.kafka.streams.UserProfile.Builder(other);
     }
   }
 
@@ -201,11 +201,11 @@ public class UserProfile extends org.apache.avro.specific.SpecificRecordBase imp
    * @param other The existing instance to copy.
    * @return A new UserProfile RecordBuilder
    */
-  public static UserProfile.Builder newBuilder(UserProfile other) {
+  public static ru.vzaigrin.examples.kafka.streams.UserProfile.Builder newBuilder(ru.vzaigrin.examples.kafka.streams.UserProfile other) {
     if (other == null) {
-      return new UserProfile.Builder();
+      return new ru.vzaigrin.examples.kafka.streams.UserProfile.Builder();
     } else {
-      return new UserProfile.Builder(other);
+      return new ru.vzaigrin.examples.kafka.streams.UserProfile.Builder(other);
     }
   }
 
@@ -229,7 +229,7 @@ public class UserProfile extends org.apache.avro.specific.SpecificRecordBase imp
      * Creates a Builder by copying an existing Builder.
      * @param other The existing Builder to copy.
      */
-    private Builder(UserProfile.Builder other) {
+    private Builder(ru.vzaigrin.examples.kafka.streams.UserProfile.Builder other) {
       super(other);
       if (isValidValue(fields()[0], other.user)) {
         this.user = data().deepCopy(fields()[0].schema(), other.user);
@@ -249,7 +249,7 @@ public class UserProfile extends org.apache.avro.specific.SpecificRecordBase imp
      * Creates a Builder by copying an existing UserProfile instance
      * @param other The existing instance to copy.
      */
-    private Builder(UserProfile other) {
+    private Builder(ru.vzaigrin.examples.kafka.streams.UserProfile other) {
       super(SCHEMA$, MODEL$);
       if (isValidValue(fields()[0], other.user)) {
         this.user = data().deepCopy(fields()[0].schema(), other.user);
@@ -279,7 +279,7 @@ public class UserProfile extends org.apache.avro.specific.SpecificRecordBase imp
       * @param value The value of 'user'.
       * @return This builder.
       */
-    public UserProfile.Builder setUser(java.lang.CharSequence value) {
+    public ru.vzaigrin.examples.kafka.streams.UserProfile.Builder setUser(java.lang.CharSequence value) {
       validate(fields()[0], value);
       this.user = value;
       fieldSetFlags()[0] = true;
@@ -299,7 +299,7 @@ public class UserProfile extends org.apache.avro.specific.SpecificRecordBase imp
       * Clears the value of the 'user' field.
       * @return This builder.
       */
-    public UserProfile.Builder clearUser() {
+    public ru.vzaigrin.examples.kafka.streams.UserProfile.Builder clearUser() {
       user = null;
       fieldSetFlags()[0] = false;
       return this;
@@ -319,7 +319,7 @@ public class UserProfile extends org.apache.avro.specific.SpecificRecordBase imp
       * @param value The value of 'experience'.
       * @return This builder.
       */
-    public UserProfile.Builder setExperience(java.lang.CharSequence value) {
+    public ru.vzaigrin.examples.kafka.streams.UserProfile.Builder setExperience(java.lang.CharSequence value) {
       validate(fields()[1], value);
       this.experience = value;
       fieldSetFlags()[1] = true;
@@ -339,7 +339,7 @@ public class UserProfile extends org.apache.avro.specific.SpecificRecordBase imp
       * Clears the value of the 'experience' field.
       * @return This builder.
       */
-    public UserProfile.Builder clearExperience() {
+    public ru.vzaigrin.examples.kafka.streams.UserProfile.Builder clearExperience() {
       experience = null;
       fieldSetFlags()[1] = false;
       return this;
@@ -359,7 +359,7 @@ public class UserProfile extends org.apache.avro.specific.SpecificRecordBase imp
       * @param value The value of 'region'.
       * @return This builder.
       */
-    public UserProfile.Builder setRegion(java.lang.CharSequence value) {
+    public ru.vzaigrin.examples.kafka.streams.UserProfile.Builder setRegion(java.lang.CharSequence value) {
       validate(fields()[2], value);
       this.region = value;
       fieldSetFlags()[2] = true;
@@ -379,7 +379,7 @@ public class UserProfile extends org.apache.avro.specific.SpecificRecordBase imp
       * Clears the value of the 'region' field.
       * @return This builder.
       */
-    public UserProfile.Builder clearRegion() {
+    public ru.vzaigrin.examples.kafka.streams.UserProfile.Builder clearRegion() {
       region = null;
       fieldSetFlags()[2] = false;
       return this;

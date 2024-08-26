@@ -25,7 +25,7 @@ public class Main {
         producerProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class);
         producerProps.put("schema.registry.url", registryUrl);
 
-        try (KafkaProducer<Long, GenericRecord> producer = new KafkaProducer<>(producerProps)) {
+        try (KafkaProducer<Long, UserProfile> producer = new KafkaProducer<>(producerProps)) {
             Random random = new Random();
             for (int i = 1; i < 101; i++) {
                 UserProfile userProfile = new UserProfile();

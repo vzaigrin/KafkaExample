@@ -27,7 +27,7 @@ public class Main {
     public static void main(String[] args) {
         String brokers = "127.0.0.1:9092,127.0.0.1:9093,127.0.0.1:9094";
         String registryUrl = "http://127.0.0.1:8081";
-        String appId = "app4";
+        String appId = "processor";
         String userProfilesTopic = "UserProfiles";
         String pageViewsTopic = "PageViews";
         String pageViewWithRegionTopic = "PageViewWithRegion";

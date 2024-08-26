@@ -13,10 +13,10 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class PageView extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -7197222145588508261L;
+  private static final long serialVersionUID = 2602767775470242259L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"PageView\",\"namespace\":\"ru.ibs.kafka.advanced.streams\",\"fields\":[{\"name\":\"user\",\"type\":\"string\"},{\"name\":\"page\",\"type\":\"string\"},{\"name\":\"industry\",\"type\":\"string\"},{\"name\":\"flags\",\"type\":[\"null\",\"string\"],\"default\":null}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"PageView\",\"namespace\":\"ru.vzaigrin.examples.kafka.streams\",\"fields\":[{\"name\":\"user\",\"type\":\"string\"},{\"name\":\"page\",\"type\":\"string\"},{\"name\":\"industry\",\"type\":\"string\"},{\"name\":\"flags\",\"type\":[\"null\",\"string\"],\"default\":null}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
@@ -201,8 +201,8 @@ public class PageView extends org.apache.avro.specific.SpecificRecordBase implem
    * Creates a new PageView RecordBuilder.
    * @return A new PageView RecordBuilder
    */
-  public static PageView.Builder newBuilder() {
-    return new PageView.Builder();
+  public static ru.vzaigrin.examples.kafka.streams.PageView.Builder newBuilder() {
+    return new ru.vzaigrin.examples.kafka.streams.PageView.Builder();
   }
 
   /**
@@ -210,11 +210,11 @@ public class PageView extends org.apache.avro.specific.SpecificRecordBase implem
    * @param other The existing builder to copy.
    * @return A new PageView RecordBuilder
    */
-  public static PageView.Builder newBuilder(PageView.Builder other) {
+  public static ru.vzaigrin.examples.kafka.streams.PageView.Builder newBuilder(ru.vzaigrin.examples.kafka.streams.PageView.Builder other) {
     if (other == null) {
-      return new PageView.Builder();
+      return new ru.vzaigrin.examples.kafka.streams.PageView.Builder();
     } else {
-      return new PageView.Builder(other);
+      return new ru.vzaigrin.examples.kafka.streams.PageView.Builder(other);
     }
   }
 
@@ -223,11 +223,11 @@ public class PageView extends org.apache.avro.specific.SpecificRecordBase implem
    * @param other The existing instance to copy.
    * @return A new PageView RecordBuilder
    */
-  public static PageView.Builder newBuilder(PageView other) {
+  public static ru.vzaigrin.examples.kafka.streams.PageView.Builder newBuilder(ru.vzaigrin.examples.kafka.streams.PageView other) {
     if (other == null) {
-      return new PageView.Builder();
+      return new ru.vzaigrin.examples.kafka.streams.PageView.Builder();
     } else {
-      return new PageView.Builder(other);
+      return new ru.vzaigrin.examples.kafka.streams.PageView.Builder(other);
     }
   }
 
@@ -252,7 +252,7 @@ public class PageView extends org.apache.avro.specific.SpecificRecordBase implem
      * Creates a Builder by copying an existing Builder.
      * @param other The existing Builder to copy.
      */
-    private Builder(PageView.Builder other) {
+    private Builder(ru.vzaigrin.examples.kafka.streams.PageView.Builder other) {
       super(other);
       if (isValidValue(fields()[0], other.user)) {
         this.user = data().deepCopy(fields()[0].schema(), other.user);
@@ -276,7 +276,7 @@ public class PageView extends org.apache.avro.specific.SpecificRecordBase implem
      * Creates a Builder by copying an existing PageView instance
      * @param other The existing instance to copy.
      */
-    private Builder(PageView other) {
+    private Builder(ru.vzaigrin.examples.kafka.streams.PageView other) {
       super(SCHEMA$, MODEL$);
       if (isValidValue(fields()[0], other.user)) {
         this.user = data().deepCopy(fields()[0].schema(), other.user);
@@ -310,7 +310,7 @@ public class PageView extends org.apache.avro.specific.SpecificRecordBase implem
       * @param value The value of 'user'.
       * @return This builder.
       */
-    public PageView.Builder setUser(java.lang.CharSequence value) {
+    public ru.vzaigrin.examples.kafka.streams.PageView.Builder setUser(java.lang.CharSequence value) {
       validate(fields()[0], value);
       this.user = value;
       fieldSetFlags()[0] = true;
@@ -330,7 +330,7 @@ public class PageView extends org.apache.avro.specific.SpecificRecordBase implem
       * Clears the value of the 'user' field.
       * @return This builder.
       */
-    public PageView.Builder clearUser() {
+    public ru.vzaigrin.examples.kafka.streams.PageView.Builder clearUser() {
       user = null;
       fieldSetFlags()[0] = false;
       return this;
@@ -350,7 +350,7 @@ public class PageView extends org.apache.avro.specific.SpecificRecordBase implem
       * @param value The value of 'page'.
       * @return This builder.
       */
-    public PageView.Builder setPage(java.lang.CharSequence value) {
+    public ru.vzaigrin.examples.kafka.streams.PageView.Builder setPage(java.lang.CharSequence value) {
       validate(fields()[1], value);
       this.page = value;
       fieldSetFlags()[1] = true;
@@ -370,7 +370,7 @@ public class PageView extends org.apache.avro.specific.SpecificRecordBase implem
       * Clears the value of the 'page' field.
       * @return This builder.
       */
-    public PageView.Builder clearPage() {
+    public ru.vzaigrin.examples.kafka.streams.PageView.Builder clearPage() {
       page = null;
       fieldSetFlags()[1] = false;
       return this;
@@ -390,7 +390,7 @@ public class PageView extends org.apache.avro.specific.SpecificRecordBase implem
       * @param value The value of 'industry'.
       * @return This builder.
       */
-    public PageView.Builder setIndustry(java.lang.CharSequence value) {
+    public ru.vzaigrin.examples.kafka.streams.PageView.Builder setIndustry(java.lang.CharSequence value) {
       validate(fields()[2], value);
       this.industry = value;
       fieldSetFlags()[2] = true;
@@ -410,7 +410,7 @@ public class PageView extends org.apache.avro.specific.SpecificRecordBase implem
       * Clears the value of the 'industry' field.
       * @return This builder.
       */
-    public PageView.Builder clearIndustry() {
+    public ru.vzaigrin.examples.kafka.streams.PageView.Builder clearIndustry() {
       industry = null;
       fieldSetFlags()[2] = false;
       return this;
@@ -430,7 +430,7 @@ public class PageView extends org.apache.avro.specific.SpecificRecordBase implem
       * @param value The value of 'flags'.
       * @return This builder.
       */
-    public PageView.Builder setFlags(java.lang.CharSequence value) {
+    public ru.vzaigrin.examples.kafka.streams.PageView.Builder setFlags(java.lang.CharSequence value) {
       validate(fields()[3], value);
       this.flags = value;
       fieldSetFlags()[3] = true;
@@ -450,7 +450,7 @@ public class PageView extends org.apache.avro.specific.SpecificRecordBase implem
       * Clears the value of the 'flags' field.
       * @return This builder.
       */
-    public PageView.Builder clearFlags() {
+    public ru.vzaigrin.examples.kafka.streams.PageView.Builder clearFlags() {
       flags = null;
       fieldSetFlags()[3] = false;
       return this;

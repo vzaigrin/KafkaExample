@@ -13,10 +13,10 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class PageRegion extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -7282187137873971795L;
+  private static final long serialVersionUID = 209647650911724809L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"PageRegion\",\"namespace\":\"ru.ibs.kafka.advanced.streams\",\"fields\":[{\"name\":\"region\",\"type\":\"string\"},{\"name\":\"page\",\"type\":\"string\"}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"PageRegion\",\"namespace\":\"ru.vzaigrin.examples.kafka.streams\",\"fields\":[{\"name\":\"region\",\"type\":\"string\"},{\"name\":\"page\",\"type\":\"string\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
@@ -157,8 +157,8 @@ public class PageRegion extends org.apache.avro.specific.SpecificRecordBase impl
    * Creates a new PageRegion RecordBuilder.
    * @return A new PageRegion RecordBuilder
    */
-  public static PageRegion.Builder newBuilder() {
-    return new PageRegion.Builder();
+  public static ru.vzaigrin.examples.kafka.streams.PageRegion.Builder newBuilder() {
+    return new ru.vzaigrin.examples.kafka.streams.PageRegion.Builder();
   }
 
   /**
@@ -166,11 +166,11 @@ public class PageRegion extends org.apache.avro.specific.SpecificRecordBase impl
    * @param other The existing builder to copy.
    * @return A new PageRegion RecordBuilder
    */
-  public static PageRegion.Builder newBuilder(PageRegion.Builder other) {
+  public static ru.vzaigrin.examples.kafka.streams.PageRegion.Builder newBuilder(ru.vzaigrin.examples.kafka.streams.PageRegion.Builder other) {
     if (other == null) {
-      return new PageRegion.Builder();
+      return new ru.vzaigrin.examples.kafka.streams.PageRegion.Builder();
     } else {
-      return new PageRegion.Builder(other);
+      return new ru.vzaigrin.examples.kafka.streams.PageRegion.Builder(other);
     }
   }
 
@@ -179,11 +179,11 @@ public class PageRegion extends org.apache.avro.specific.SpecificRecordBase impl
    * @param other The existing instance to copy.
    * @return A new PageRegion RecordBuilder
    */
-  public static PageRegion.Builder newBuilder(PageRegion other) {
+  public static ru.vzaigrin.examples.kafka.streams.PageRegion.Builder newBuilder(ru.vzaigrin.examples.kafka.streams.PageRegion other) {
     if (other == null) {
-      return new PageRegion.Builder();
+      return new ru.vzaigrin.examples.kafka.streams.PageRegion.Builder();
     } else {
-      return new PageRegion.Builder(other);
+      return new ru.vzaigrin.examples.kafka.streams.PageRegion.Builder(other);
     }
   }
 
@@ -206,7 +206,7 @@ public class PageRegion extends org.apache.avro.specific.SpecificRecordBase impl
      * Creates a Builder by copying an existing Builder.
      * @param other The existing Builder to copy.
      */
-    private Builder(PageRegion.Builder other) {
+    private Builder(ru.vzaigrin.examples.kafka.streams.PageRegion.Builder other) {
       super(other);
       if (isValidValue(fields()[0], other.region)) {
         this.region = data().deepCopy(fields()[0].schema(), other.region);
@@ -222,7 +222,7 @@ public class PageRegion extends org.apache.avro.specific.SpecificRecordBase impl
      * Creates a Builder by copying an existing PageRegion instance
      * @param other The existing instance to copy.
      */
-    private Builder(PageRegion other) {
+    private Builder(ru.vzaigrin.examples.kafka.streams.PageRegion other) {
       super(SCHEMA$, MODEL$);
       if (isValidValue(fields()[0], other.region)) {
         this.region = data().deepCopy(fields()[0].schema(), other.region);
@@ -248,7 +248,7 @@ public class PageRegion extends org.apache.avro.specific.SpecificRecordBase impl
       * @param value The value of 'region'.
       * @return This builder.
       */
-    public PageRegion.Builder setRegion(java.lang.CharSequence value) {
+    public ru.vzaigrin.examples.kafka.streams.PageRegion.Builder setRegion(java.lang.CharSequence value) {
       validate(fields()[0], value);
       this.region = value;
       fieldSetFlags()[0] = true;
@@ -268,7 +268,7 @@ public class PageRegion extends org.apache.avro.specific.SpecificRecordBase impl
       * Clears the value of the 'region' field.
       * @return This builder.
       */
-    public PageRegion.Builder clearRegion() {
+    public ru.vzaigrin.examples.kafka.streams.PageRegion.Builder clearRegion() {
       region = null;
       fieldSetFlags()[0] = false;
       return this;
@@ -288,7 +288,7 @@ public class PageRegion extends org.apache.avro.specific.SpecificRecordBase impl
       * @param value The value of 'page'.
       * @return This builder.
       */
-    public PageRegion.Builder setPage(java.lang.CharSequence value) {
+    public ru.vzaigrin.examples.kafka.streams.PageRegion.Builder setPage(java.lang.CharSequence value) {
       validate(fields()[1], value);
       this.page = value;
       fieldSetFlags()[1] = true;
@@ -308,7 +308,7 @@ public class PageRegion extends org.apache.avro.specific.SpecificRecordBase impl
       * Clears the value of the 'page' field.
       * @return This builder.
       */
-    public PageRegion.Builder clearPage() {
+    public ru.vzaigrin.examples.kafka.streams.PageRegion.Builder clearPage() {
       page = null;
       fieldSetFlags()[1] = false;
       return this;

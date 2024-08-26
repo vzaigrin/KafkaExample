@@ -1,0 +1,9 @@
+{
+  "namespace": "ru.vzaigrin.examples.kafka.streams",
+  "name": "PageRegion",
+  "type": "record",
+  "fields": [
+    {"name": "region", "type": "string"},
+    {"name": "page", "type": "string"}
+  ]
+}
