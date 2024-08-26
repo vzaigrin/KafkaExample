@@ -1,0 +1,10 @@
+{
+  "namespace": "ru.ibs.kafka.advanced.streams",
+  "name": "UserProfile",
+  "type": "record",
+  "fields": [
+    {"name": "user", "type": "string"},
+    {"name": "experience", "type": ["null", "string"], "default": null},
+    {"name": "region", "type": "string"}
+  ]
+}

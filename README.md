@@ -1,5 +1,7 @@
 # Kafka: примеры приложений
 
+* **Docker** - файлы для запуска Kafka
 * **KafkaPerfTest** - тестирование производительности
 * **KafkaReadWrite** - запись в Kafka и чтение из Kafka
-* **KafkaStreamWordCount** - Kafka Streams Word Count
+* **KafkaStreams** - примеры Kafka Streams
+* **Avro** - примеры с Avro

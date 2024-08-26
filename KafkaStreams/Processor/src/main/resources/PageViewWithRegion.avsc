@@ -1,0 +1,9 @@
+{
+  "namespace": "ru.ibs.kafka.advanced.streams",
+  "name": "PageViewWithRegion",
+  "type": "record",
+  "fields": [
+    {"name": "region", "type": "string"},
+    {"name": "pages", "type": "long"}
+  ]
+}
