@@ -31,7 +31,7 @@ public class Main {
         producerProps.put("schema.registry.url", registryUrl);
 
         try (KafkaProducer<Long, GenericRecord> producer = new KafkaProducer<>(producerProps)) {
-            Schema schema = new Schema.Parser().parse(new File("src/main/avro/UserProfile.avsc"));
+            Schema schema = new Schema.Parser().parse(new File("src/main/resources/UserProfile.avsc"));
             Random random = new Random();
 
             while(true) {

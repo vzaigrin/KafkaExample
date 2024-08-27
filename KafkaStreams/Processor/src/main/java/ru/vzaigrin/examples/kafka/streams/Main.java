@@ -65,7 +65,7 @@ public class Main {
                 .addSource("UserProfilesSource", longSerde.deserializer(), userProfileSerde.deserializer(), userProfilesTopic)
                 .addProcessor("userProfilesProcessor", userProfilesProcessor::new, "UserProfilesSource")
                 .addSource("PageViewsSource", longSerde.deserializer(), userProfileSerde.deserializer(), pageViewsTopic)
-                .addProcessor("PageViewsProcessor", PageViewsProcessor::new, "UserProfilesSource")
+                .addProcessor("PageViewsProcessor", PageViewsProcessor::new, "PageViewsSource")
                 .addStateStore(userProfilesStore, "userProfilesProcessor", "PageViewsProcessor")
                 .addStateStore(pageViewStore, "PageViewsProcessor")
                 .addSink("PageViewWithRegionSink", pageViewWithRegionTopic, stringSerde.serializer(), pageViewWithRegionSerde.serializer(), "PageViewsProcessor")
