@@ -1,7 +1,6 @@
 package ru.vzaigrin.examples.kafka.streams;
 
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
-import org.apache.avro.generic.GenericRecord;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -13,8 +12,8 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Main {
     public static void main(String[] args) {
-        String brokers = "127.0.0.1:9092,127.0.0.1:9093,127.0.0.1:9094";
-        String registryUrl = "http://127.0.0.1:8081";
+        String brokers = "192.168.88.20:19092,192.168.88.20:19092,192.168.88.20:39092";
+        String registryUrl = "http://192.168.88.20:8081";
         String clientId = "upp";
         String topic = "UserProfiles";
 

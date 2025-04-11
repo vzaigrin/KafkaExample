@@ -16,7 +16,7 @@ import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
-        String brokers = "127.0.0.1:9092,127.0.0.1:9093,127.0.0.1:9094";
+        String brokers = "127.0.0.1:19092,127.0.0.1:29092,127.0.0.1:39092";
         String registryUrl = "http://127.0.0.1:8081";
         String appId = "dsl";
         String userProfilesTopic = "UserProfiles";
@@ -67,7 +67,8 @@ public class Main {
                 .to(pageViewWithRegionTopic, Produced.with(stringSerde, pageViewWithRegionSerde))
         ;
 
-        KafkaStreams streams = new KafkaStreams(builder.build(), props);
-        streams.start();
+        try (KafkaStreams streams = new KafkaStreams(builder.build(), props)) {
+            streams.start();
+        }
     }
 }
