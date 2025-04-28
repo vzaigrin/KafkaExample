@@ -2,6 +2,8 @@ package ru.example.kafka
 
 import org.apache.kafka.clients.producer.{KafkaProducer, ProducerRecord}
 import java.time.Duration
+import org.apache.kafka.clients.producer.ProducerConfig._
+import org.apache.kafka.common.serialization._
 import java.util.Properties
 
 object KafkaPerfTest {
@@ -19,11 +21,12 @@ object KafkaPerfTest {
 
     // Создаём Producer
     val props = new Properties()
-    props.put("bootstrap.servers", brokers)
-    props.put("key.serializer", "org.apache.kafka.common.serialization.LongSerializer")
-    props.put("value.serializer", "org.apache.kafka.common.serialization.ByteArraySerializer")
-    props.put("batch.size", batchSize)
-    val producer = new KafkaProducer[String, Array[Byte]](props)
+    props.put(BOOTSTRAP_SERVERS_CONFIG, brokers)
+    props.put(KEY_SERIALIZER_CLASS_CONFIG, classOf[LongSerializer])
+    props.put(VALUE_SERIALIZER_CLASS_CONFIG, classOf[ByteArraySerializer])
+    props.put(BATCH_SIZE_CONFIG, batchSize)
+
+    val producer = new KafkaProducer[Long, Array[Byte]](props)
 
     // Создаём сообщение, которое будем отправлять
     val value = Array.fill[Byte](messageSize)(0)

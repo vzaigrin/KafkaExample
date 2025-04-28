@@ -2,12 +2,9 @@ ThisBuild / organization := "ru.example"
 ThisBuild / version := "1.0"
 ThisBuild / scalaVersion := "2.13.10"
 
-lazy val kafkaVersion   = "3.4.0"
-lazy val logbackVersion = "1.3.0"
-
 ThisBuild / libraryDependencies ++= Seq(
-  "org.apache.kafka" % "kafka-clients"   % kafkaVersion,
-  "ch.qos.logback"   % "logback-classic" % logbackVersion
+  "org.apache.kafka" % "kafka-clients"   % "3.9.0",
+  "ch.qos.logback"   % "logback-classic" % "1.5.18"
 )
 
 lazy val root = (project in file(".")).settings(name := "KafkaPerfTest")

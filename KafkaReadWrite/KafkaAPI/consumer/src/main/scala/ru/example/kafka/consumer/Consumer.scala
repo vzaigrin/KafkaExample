@@ -3,6 +3,7 @@ package ru.example.kafka.consumer
 import com.typesafe.config.ConfigFactory
 import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.apache.kafka.common.serialization.StringDeserializer
+import org.apache.kafka.clients.consumer.ConsumerConfig._
 import java.time.Duration
 import java.util.Properties
 import scala.jdk.CollectionConverters.IterableHasAsJava
@@ -17,8 +18,9 @@ object Consumer {
 
     // Создаём Consumer и подписываемся на тему
     val props = new Properties()
-    props.put("bootstrap.servers", config.getString("bootstrap.servers"))
-    props.put("group.id", config.getString("group.id"))
+    props.put(BOOTSTRAP_SERVERS_CONFIG, config.getString("bootstrap.servers"))
+    props.put(GROUP_ID_CONFIG, config.getString("group.id"))
+
     val consumer = new KafkaConsumer(props, new StringDeserializer, new StringDeserializer)
     consumer.subscribe(List(topic).asJavaCollection)
 

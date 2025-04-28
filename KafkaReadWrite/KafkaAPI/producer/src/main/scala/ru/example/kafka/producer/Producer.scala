@@ -7,6 +7,7 @@ import io.circe.syntax.EncoderOps
 import org.apache.commons.csv.CSVFormat
 import org.apache.kafka.clients.producer.{KafkaProducer, ProducerRecord}
 import org.apache.kafka.common.serialization.StringSerializer
+import org.apache.kafka.clients.producer.ProducerConfig._
 import java.io.FileReader
 import java.util.Properties
 
@@ -18,7 +19,7 @@ object Producer {
 
     // Создаём Producer
     val props = new Properties()
-    props.put("bootstrap.servers", config.getString("bootstrap.servers"))
+    props.put(BOOTSTRAP_SERVERS_CONFIG, config.getString("bootstrap.servers"))
     val producer = new KafkaProducer(props, new StringSerializer, new StringSerializer)
     val topic    = config.getString("topic")
 
