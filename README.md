@@ -7,3 +7,4 @@
 * **KafkaStreams** - примеры Kafka Streams
 * **SchemaRegistryExample** - демонстрации работы с Kafka Schema Registry
 * **ConsumerPartitionAssignmentTest** - демонстрация работы назначения разделов потребителям
+* **Transactions** - примеры приложений с транзакциями

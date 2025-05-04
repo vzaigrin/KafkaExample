@@ -9,7 +9,7 @@ ThisBuild / libraryDependencies ++= Seq(
 
 lazy val root = (project in file("."))
   .settings(name := "ConsumerPartitionAssignment")
-  .settings(assembly / mainClass := Some("ru.example.kafka.consumer.ConsumerPartitionAssignment"))
+  .settings(assembly / mainClass := Some("ru.example.kafka.scala.ConsumerPartitionAssignment"))
   .settings(assembly / assemblyJarName := "ConsumerPartitionAssignment.jar")
   .settings(assembly / assemblyMergeStrategy := {
     case m if m.toLowerCase.endsWith("manifest.mf")       => MergeStrategy.discard
