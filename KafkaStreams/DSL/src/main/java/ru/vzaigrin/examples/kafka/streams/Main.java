@@ -3,7 +3,6 @@ package ru.vzaigrin.examples.kafka.streams;
 import io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig;
 import io.confluent.kafka.streams.serdes.avro.GenericAvroSerde;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
-import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.Serde;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.*;
@@ -16,7 +15,7 @@ import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
-        String brokers = "127.0.0.1:19092,127.0.0.1:29092,127.0.0.1:39092";
+        String brokers = "127.0.0.1:9092,127.0.0.1:9093,127.0.0.1:9094";
         String registryUrl = "http://127.0.0.1:8081";
         String appId = "dsl";
         String userProfilesTopic = "UserProfiles";
@@ -25,20 +24,14 @@ public class Main {
 
         Serde<Long> longSerde = Serdes.Long();
         Serde<String> stringSerde = Serdes.String();
+        SpecificAvroSerde<UserProfile> userProfileSerde = new SpecificAvroSerde<>();
+        SpecificAvroSerde<PageView> pageViewSerde = new SpecificAvroSerde<>();
+        SpecificAvroSerde<PageViewWithRegion> pageViewWithRegionSerde = new SpecificAvroSerde<>();
 
         Map<String, String> serdeConfig = Collections.singletonMap(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, registryUrl);
-
-        SpecificAvroSerde<UserProfile> userProfileSerde = new SpecificAvroSerde<>();
         userProfileSerde.configure(serdeConfig, false);
-
-        SpecificAvroSerde<PageView> pageViewSerde = new SpecificAvroSerde<>();
         pageViewSerde.configure(serdeConfig, false);
-
-        SpecificAvroSerde<PageViewWithRegion> pageViewWithRegionSerde = new SpecificAvroSerde<>();
         pageViewWithRegionSerde.configure(serdeConfig, false);
-
-        SpecificAvroSerde<PageRegion> pageRegionSerde = new SpecificAvroSerde<>();
-        pageRegionSerde.configure(serdeConfig, false);
 
         Random random = new Random();
 
@@ -47,9 +40,7 @@ public class Main {
         props.put(StreamsConfig.APPLICATION_ID_CONFIG, appId);
         props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, longSerde.getClass());
         props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, GenericAvroSerde.class);
-        props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
-        props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false");
-        props.put("schema.registry.url", registryUrl);
+        props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, registryUrl);
         props.put(StreamsConfig.STATE_DIR_CONFIG, "/tmp/" + appId + random.nextInt(10));
 
         StreamsBuilder builder = new StreamsBuilder();
@@ -58,8 +49,9 @@ public class Main {
 
         pageViewKStream
                 .join(userProfileKTable,
-                        (leftValue, rightValue) -> new PageRegion(rightValue.getRegion(), leftValue.getPage()))
-                .groupBy((key, value) -> value.getRegion().toString(), Grouped.with(stringSerde, pageRegionSerde))
+                        (leftValue, rightValue) -> KeyValue.pair(rightValue.getRegion(), leftValue.getPage()))
+                .map((key, value) -> KeyValue.pair(value.key.toString(), value.value.toString()))
+                .groupByKey(Grouped.with(stringSerde, stringSerde))
                 .windowedBy(TimeWindows.ofSizeWithNoGrace(Duration.ofMinutes(5)))
                 .count()
                 .toStream()
@@ -67,8 +59,12 @@ public class Main {
                 .to(pageViewWithRegionTopic, Produced.with(stringSerde, pageViewWithRegionSerde))
         ;
 
-        try (KafkaStreams streams = new KafkaStreams(builder.build(), props)) {
-            streams.start();
-        }
+        Topology topology = builder.build();
+        System.out.println(topology.describe());
+
+        KafkaStreams streams = new KafkaStreams(topology, props);
+        streams.cleanUp();
+        streams.start();
+        Runtime.getRuntime().addShutdownHook(new Thread(streams::close));
     }
 }

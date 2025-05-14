@@ -2,8 +2,8 @@ ThisBuild / organization := "ru.example"
 ThisBuild / version := "1.0"
 ThisBuild / scalaVersion := "2.12.15"
 
-lazy val kafkaVersion = "3.7.1"
-lazy val logbackVersion = "1.5.6"
+lazy val kafkaVersion = "3.9.0"
+lazy val logbackVersion = "1.5.18"
 
 lazy val root = (project in file("."))
   .settings(

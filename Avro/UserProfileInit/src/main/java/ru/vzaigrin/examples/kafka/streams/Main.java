@@ -12,8 +12,8 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Main {
     public static void main(String[] args) {
-        String brokers = "192.168.88.20:19092,192.168.88.20:19092,192.168.88.20:39092";
-        String registryUrl = "http://192.168.88.20:8081";
+        String brokers = "localhost:9092,localhost:9093,localhost:9094";
+        String registryUrl = "http://localhost:8081";
         String clientId = "upp";
         String topic = "UserProfiles";
 
