@@ -7,11 +7,16 @@ import java.util
 class MyConsumerRebalanceListener extends ConsumerRebalanceListener {
 
   override def onPartitionsRevoked(collection: util.Collection[TopicPartition]): Unit = {
-    println("\nonPartitionsRevoked")
+    println("\nPartitions Revoked")
+    collection.forEach { tp =>
+      println(s"Topic: ${tp.topic()}, Partition: ${tp.partition()}")
+    }
   }
 
   override def onPartitionsAssigned(collection: util.Collection[TopicPartition]): Unit = {
-    println("\nonPartitionsAssigned")
-    collection.forEach { tp => println(s"Topic: ${tp.topic()}, Partition: ${tp.partition()}") }
+    println("\nPartitions Assigned")
+    collection.forEach { tp =>
+      println(s"Topic: ${tp.topic()}, Partition: ${tp.partition()}")
+    }
   }
 }

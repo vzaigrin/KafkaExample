@@ -1,0 +1,6 @@
+{
+    "user": "string",
+    "page": "string",
+	"industry": "string",
+	"flags": "string"
+}

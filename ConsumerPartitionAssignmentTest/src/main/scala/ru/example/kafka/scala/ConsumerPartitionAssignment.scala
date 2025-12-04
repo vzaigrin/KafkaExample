@@ -10,8 +10,8 @@ import scala.jdk.CollectionConverters.IterableHasAsJava
 object ConsumerPartitionAssignment {
   def main(args: Array[String]): Unit = {
 
-    if (args.length != 1) {
-      println("Usage: ConsumerPartitionAssignment strategy")
+    if (args.length != 2) {
+      println("Usage: ConsumerPartitionAssignment strategy brokers")
       println("Strategy:")
       println("\tRangeAssignor")
       println("\tRoundRobinAssignor")
@@ -21,10 +21,10 @@ object ConsumerPartitionAssignment {
     }
 
     // Параметры
-    val brokers = "localhost:9092"
-    val topic1   = "t1"
-    val topic2   = "t2"
-    val group   = "g1"
+    val brokers             = args(1)
+    val topic1              = "t1"
+    val topic2              = "t2"
+    val group               = "g1"
     val partitionAssignment = s"org.apache.kafka.clients.consumer.${args(0)}"
 
     // Создаём Consumer и подписываемся на темы
@@ -44,8 +44,7 @@ object ConsumerPartitionAssignment {
     // Получаем информацию о темах и разделах и выводим её на экран
     println("\nAfter subscribe")
     val ass = consumer.assignment()
-    ass.forEach { tp => println(s"Topic: ${tp.topic()}, Partition: ${tp.partition()}")
-    }
+    ass.forEach { tp => println(s"Topic: ${tp.topic()}, Partition: ${tp.partition()}") }
 
     // Читаем тему
     try {
