@@ -12,7 +12,7 @@
 
 * Открываем первый терминал и запускаем потребителя
 
-    java -jar ConsumerPartitionAssignment.jar RangeAssignor
+    java -jar ConsumerPartitionAssignment.jar RangeAssignor kafka1:9092,kafka2:9092,kafka3:9092
 
 Вывод 
 
@@ -34,7 +34,7 @@ Topic: t2, Partition: 0
 
 * Открываем второй терминал и запускаем потребителя
 
-    java -jar ConsumerPartitionAssignment.jar RangeAssignor
+    java -jar ConsumerPartitionAssignment.jar RangeAssignor kafka1:9092,kafka2:9092,kafka3:9092
 
 Вывод во втором терминале
 
@@ -56,7 +56,7 @@ Topic: t2, Partition: 1
 
 * Открываем третий терминал и запускаем потребителя
 
-    java -jar ConsumerPartitionAssignment.jar RangeAssignor
+    java -jar ConsumerPartitionAssignment.jar RangeAssignor kafka1:9092,kafka2:9092,kafka3:9092
 
 Вывод во третьем терминале
 
@@ -106,7 +106,7 @@ Topic: t2, Partition: 1
 
 * Открываем первый терминал и запускаем потребителя
 
-    java -jar ConsumerPartitionAssignment.jar StickyAssignor
+    java -jar ConsumerPartitionAssignment.jar StickyAssignor kafka1:9092,kafka2:9092,kafka3:9092
 
 Вывод 
 
@@ -128,7 +128,7 @@ Topic: t2, Partition: 0
 
 * Открываем второй терминал и запускаем потребителя
 
-    java -jar ConsumerPartitionAssignment.jar StickyAssignor
+    java -jar ConsumerPartitionAssignment.jar StickyAssignor kafka1:9092,kafka2:9092,kafka3:9092
 
 Вывод во втором терминале
 
@@ -150,7 +150,7 @@ Topic: t2, Partition: 0
 
 * Открываем третий терминал и запускаем потребителя
 
-    java -jar ConsumerPartitionAssignment.jar StickyAssignor
+    java -jar ConsumerPartitionAssignment.jar StickyAssignor kafka1:9092,kafka2:9092,kafka3:9092
 
 Вывод во третьем терминале
 
