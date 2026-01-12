@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.example.kafka.java</groupId>
-    <artifactId>Consumer</artifactId>
+    <artifactId>ConsumerPartitionAssignment</artifactId>
     <version>1.0</version>
 
     <properties>
@@ -43,7 +43,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>ru.vzaigrin.example.kafka.java.Consumer</mainClass>
+                            <mainClass>ru.vzaigrin.example.kafka.java.ConsumerPartitionAssignment</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
