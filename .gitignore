@@ -1,6 +1,8 @@
 *.jar
 *.class
 *.log
+**/.lsp
+**/.clj-kondo
 **/.DS_Store
 **/.history3
 **/.bloop/
