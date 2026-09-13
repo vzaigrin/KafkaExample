@@ -1,0 +1,68 @@
+0) Подготовка
+0.1) Запустить Kafka
+0.2) Создать топики topic1, topic2 и topic3
+
+1) Приложение 1:
+  - подписывается на сообщения в топике topic1
+  - открывает транзакцию
+  - получает набор сообщений из топика topic1
+  - отправляет принятый набор сообщений в топики topic2 и topic3
+  - случайным выбором подтверждает или отменяет транзакцию
+
+1.1) В первом терминале запустить App1
+java -jar App1.jar
+
+1.2) Во втором терминале запустить producer, который будет писать в топик topic1
+kafka-console-producer.sh --topic topic1 --bootstrap-server localhost:9092
+
+1.3) В третьем терминале запустить консольный consumer, который будет читать топик topic2
+kafka-console-consumer.sh --topic topic2 --bootstrap-server localhost:9092
+
+1.4) В четвертом терминале запустить консольный consumer, который будет читать топик topic3 в режиме --isolation-level read_committed
+kafka-console-consumer.sh --topic topic3 --bootstrap-server localhost:9092 --isolation-level read_committed
+
+1.5) Отправлять сообщения в топик topic1 и смотреть какие сообщения появляются в топиках topic2 и topic3
+
+2) Приложение 2 
+
+2.1) Producer:
+  - открывает транзакцию
+  - отправляет по 5 сообщений в топики topic2 и topic3
+  - подтверждает транзакцию
+  - открывает другую транзакцию
+  - отправляет по 5 сообщения в топики topic2 и topic3
+  - отменяет транзакцию
+
+2.2) Consumer: читать сообщения из топиков topic2 и topic3 так, чтобы сообщения из подтверждённой транзакции были выведены, а из неподтверждённой - нет.
+
+2.3) В первом терминале запустить приложение 2 Consumer
+java -jar App2Consumer.jar
+
+2.4) Во втором терминале запустить приложение 2 Producer
+java -jar App2Producer.jar
+
+2.5) В третьем терминале запустить консольный consumer, который будет читать топик topic2
+kafka-console-consumer.sh --topic topic2 --bootstrap-server localhost:9092
+
+2.6) В четвертом терминале запустить консольный consumer, который будет читать топик topic3
+kafka-console-consumer.sh --topic topic3 --bootstrap-server localhost:9092
+
+3) Приложение 3
+  - открывает транзакцию
+  - выбирает key случайным образом
+  - отправляет сообщения в топик topic2 с key
+  - выводит приглашение к вводу пользователя
+  - ждёт ввода пользователя (нажатия клавишы)
+  - подтверждает транзакцию
+
+3.1) В первом терминале запустить консольный consumer, который будет читать топик topic2
+kafka-console-consumer.sh --topic topic2 --bootstrap-server localhost:9092
+
+3.2) Во втором терминале запустить консольный consumer, который будет читать топик topic2 в режиме --isolation-level read_committed
+kafka-console-consumer.sh --topic topic2 --bootstrap-server localhost:9092 --isolation-level read_committed
+
+3.4) В третьем терминале запустить первый экземпляр приложения
+java -jar App3.jar
+
+3.5) В четвертом терминале запустить второй экземпляр приложения
+java -jar App3.jar

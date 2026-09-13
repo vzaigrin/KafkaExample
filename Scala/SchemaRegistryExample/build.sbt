@@ -6,7 +6,7 @@ ThisBuild / resolvers += "Confluent Repository" at "https://packages.confluent.i
 
 ThisBuild / libraryDependencies ++= Seq(
   "com.typesafe"     % "config"                % "1.4.2",
-  "org.apache.kafka" % "kafka-clients"         % "3.4.0",
+  "org.apache.kafka" % "kafka-clients"         % "4.3.1",
   "io.confluent"     % "kafka-avro-serializer" % "7.4.0",
   "ch.qos.logback"   % "logback-classic"       % "1.4.7"
 )

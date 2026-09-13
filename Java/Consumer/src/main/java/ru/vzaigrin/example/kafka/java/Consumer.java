@@ -6,7 +6,6 @@ import java.util.Properties;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.apache.kafka.common.errors.WakeupException;
 import org.apache.kafka.common.serialization.*;
 import static org.apache.kafka.clients.CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG;
 import static org.apache.kafka.clients.CommonClientConfigs.GROUP_ID_CONFIG;
@@ -23,7 +22,7 @@ public class Consumer {
         // Параметры
         String brokers = args[2];
         String[] topics = args[0].split(",");
-        String group   = args[1];
+        String group = args[1];
         String offsetConfig = args[3];
 
         // Создаём Consumer и подписываемся на тему
@@ -36,23 +35,7 @@ public class Consumer {
 
         KafkaConsumer<Integer, String> consumer = new KafkaConsumer<>(props);
 
-        // Ссылка на главный поток
-        final Thread mainThread = Thread.currentThread();
-
-        // Регистрируем Shutdown Hook
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            System.out.println("Detected a shutdown, let's exit by calling consumer.wakeup()...");
-            consumer.wakeup();
-
-            // join the main thread to allow the execution of the code in the main thread
-            try {
-                mainThread.join();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }));
-
-        try  {
+        try {
             consumer.subscribe(Arrays.asList(topics));
             while (true) {
                 ConsumerRecords<Integer, String> records = consumer.poll(Duration.ofSeconds(1));
@@ -65,16 +48,11 @@ public class Consumer {
                     System.out.printf("%s\t%d\t%d\t%d\t%s\n", topic, partition, offset, key, value);
                 }
             }
-        } catch (WakeupException e) {
-            System.out.println("Consumer is starting to shut down...");
         } catch (Exception e) {
             System.out.println(e.getLocalizedMessage());
             System.exit(-1);
         } finally {
-            // close the consumer and commit the offsets
-            consumer.close(Duration.ofSeconds(10));
-            System.out.println("The consumer is now gracefully shut down");
-            System.exit(0);
+            consumer.close();
         }
 
         System.exit(0);

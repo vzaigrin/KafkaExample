@@ -44,7 +44,7 @@ public class ConsumerPartitionAssignment {
         consumer.subscribe(Arrays.asList(topic1, topic2), new MyConsumerRebalanceListener());
 
         // Получаем информацию о темах и разделах и выводим её на экран
-        consumer.poll(Duration.ofSeconds(1));
+        consumer.poll(Duration.ofSeconds(10));
 
         System.out.println("\nAfter subscribe");
         Set<TopicPartition> tpset = consumer.assignment();

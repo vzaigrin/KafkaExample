@@ -30,6 +30,19 @@ object Consumer {
     Using.Manager { use =>
       val consumer = use(new KafkaConsumer[Long, GenericRecord](props))
       consumer.subscribe(List(topic).asJava)
+ 
+      // Читаем темы
+      println("Читаем темы")
+      consumer.poll(Duration.ofSeconds(10))
+
+      // Получаем информацию о темах и разделах и выводим её на экран
+      println("Получаем информацию о темах и разделах")
+      val ass = consumer.assignment()
+      ass.forEach { tp => println(s"Topic: ${tp.topic()}, Partition: ${tp.partition()}") }
+
+      // Установливаем указатель на первые сообщения в партициях
+      println("Установливаем указатель на первые сообщения в партициях")
+      consumer.seekToBeginning(ass)
 
       // Registering a shutdown hook so we can exit cleanly
       val mainThread: Thread = Thread.currentThread
@@ -52,7 +65,7 @@ object Consumer {
             val offset: Long         = record.offset()
             val key: Long            = record.key
             val value: GenericRecord = record.value
-            println(s"offset = $offset\tkey = $key\tvalue = $value")
+            println(s"offset = $offset\tkey = $key \tvalue = $value")
           }
         }
       } catch {

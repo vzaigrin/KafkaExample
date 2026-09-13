@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>ru.example.kafka.java</groupId>
+    <groupId>ru.vzaigrin.example.kafka.java</groupId>
     <artifactId>Consumer</artifactId>
     <version>1.0</version>
 
@@ -18,7 +18,7 @@
         <dependency>
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka-clients</artifactId>
-            <version>3.9.1</version>
+            <version>4.3.1</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
