@@ -1,0 +1,12 @@
+[0m[[0m[0mdebug[0m] [0m[0mPackaging /Volumes/Data/Projects/KafkaExample/Scala/KafkaStreams/KafkaStreamWordCount/target/out/jvm/scala-2.13.18/kafkastreamwordcount/kafkastreamwordcount_2.13-1.0.jar ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	logback.xml[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Volumes/Data/Projects/KafkaExample/Scala/KafkaStreams/KafkaStreamWordCount/src/main/resources/logback.xml[0m
+[0m[[0m[0mdebug[0m] [0m[0m	reference.conf[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Volumes/Data/Projects/KafkaExample/Scala/KafkaStreams/KafkaStreamWordCount/src/main/resources/reference.conf[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ru/vzaigrin/example/kafkastream/KafkaStreamWordCount$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Volumes/Data/Projects/KafkaExample/Scala/KafkaStreams/KafkaStreamWordCount/target/out/jvm/scala-2.13.18/kafkastreamwordcount/classes/ru/vzaigrin/example/kafkastream/KafkaStreamWordCount$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	ru/vzaigrin/example/kafkastream/KafkaStreamWordCount.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Volumes/Data/Projects/KafkaExample/Scala/KafkaStreams/KafkaStreamWordCount/target/out/jvm/scala-2.13.18/kafkastreamwordcount/classes/ru/vzaigrin/example/kafkastream/KafkaStreamWordCount.class[0m
+[0m[[0m[0mdebug[0m] [0m[0mDone packaging.[0m
+[0m[[0m[0mdebug[0m] [0m[0mwrote ${OUT}/jvm/scala-2.13.18/kafkastreamwordcount/kafkastreamwordcount_2.13-1.0.jar[0m

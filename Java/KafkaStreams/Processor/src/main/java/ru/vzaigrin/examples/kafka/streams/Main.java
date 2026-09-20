@@ -25,8 +25,14 @@ public class Main {
     static SpecificAvroSerde<PageViewWithRegion> pageViewWithRegionSerde = new SpecificAvroSerde<>();
 
     public static void main(String[] args) {
-        String brokers = "127.0.0.1:9092,127.0.0.1:9093,127.0.0.1:9094";
-        String registryUrl = "http://127.0.0.1:8081";
+        if (args.length != 2) {
+            System.out.println("Usage: Processor brokers registryURL");
+            System.exit(-1);
+        }
+
+        // Параметры
+        String brokers = args[0];
+        String registryUrl = args[1];
         String appId = "processor";
         String userProfilesTopic = "UserProfiles";
         String pageViewsTopic = "PageViews";
@@ -60,7 +66,7 @@ public class Main {
                 longSerde);
 
         Topology topology = new Topology();
-
+ 
         topology
                 .addSource("UserProfilesSource", longSerde.deserializer(), userProfileSerde.deserializer(), userProfilesTopic)
                 .addProcessor("userProfilesProcessor", userProfilesProcessor::new, "UserProfilesSource")
@@ -70,6 +76,8 @@ public class Main {
                 .addStateStore(pageViewStore, "PageViewsProcessor")
                 .addSink("PageViewWithRegionSink", pageViewWithRegionTopic, stringSerde.serializer(), pageViewWithRegionSerde.serializer(), "PageViewsProcessor")
                 ;
+
+        System.out.println(topology.describe());
 
         KafkaStreams streams = new KafkaStreams(topology, props);
         streams.start();

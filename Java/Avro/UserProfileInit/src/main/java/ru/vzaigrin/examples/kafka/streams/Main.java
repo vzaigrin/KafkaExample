@@ -12,8 +12,14 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Main {
     public static void main(String[] args) {
-        String brokers = "localhost:9092,localhost:9093,localhost:9094";
-        String registryUrl = "http://localhost:8081";
+        if (args.length != 2) {
+            System.out.println("Usage: UserProfileInit brokers registryURL");
+            System.exit(-1);
+        }
+
+        // Параметры
+        String brokers = args[0];
+        String registryUrl = args[1];
         String clientId = "upp";
         String topic = "UserProfiles";
 

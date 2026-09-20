@@ -13,8 +13,14 @@ import java.util.concurrent.TimeUnit;
 
 public class Main {
     public static void main(String[] args) {
-        String brokers = "127.0.0.1:9092,127.0.0.1:9093,127.0.0.1:9094";
-        String registryUrl = "http://127.0.0.1:8081";
+        if (args.length != 2) {
+            System.out.println("Usage: PageView brokers registryURL");
+            System.exit(-1);
+        }
+
+        // Параметры
+        String brokers = args[0];
+        String registryUrl = args[1];
         String clientId = "pvp";
         String topic = "PageViews";
 

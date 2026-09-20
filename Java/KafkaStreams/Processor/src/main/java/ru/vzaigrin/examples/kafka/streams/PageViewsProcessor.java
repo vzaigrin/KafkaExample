@@ -11,8 +11,7 @@ public class PageViewsProcessor  implements Processor<Long, PageView, String, Pa
     private ProcessorContext<String, PageViewWithRegion> context;
 
     @Override
-    @SuppressWarnings("unchecked")
-    public void init(ProcessorContext context) {
+    public void init(final ProcessorContext<String, PageViewWithRegion> context) {
         this.context = context;
         userProfilesStore = context.getStateStore("userProfilesStore");
         pageViewStore = context.getStateStore("pageViewStore");
