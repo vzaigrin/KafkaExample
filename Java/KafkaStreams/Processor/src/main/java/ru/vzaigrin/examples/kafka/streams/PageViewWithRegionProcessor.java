@@ -1,4 +1,4 @@
-package ru.ibs.kafka.advanced.streams;
+package ru.vzaigrin.examples.kafka.streams;
 
 import org.apache.kafka.streams.processor.api.Processor;
 import org.apache.kafka.streams.processor.api.ProcessorContext;
@@ -10,8 +10,7 @@ public class PageViewWithRegionProcessor implements Processor<Long, PageView, St
     private ProcessorContext<String, String> context;
 
     @Override
-    @SuppressWarnings("unchecked")
-    public void init(ProcessorContext context) {
+    public void init(ProcessorContext<String, String> context) {
         this.context = context;
         kvUserProfilesStore = context.getStateStore("userProfilesStore");
     }

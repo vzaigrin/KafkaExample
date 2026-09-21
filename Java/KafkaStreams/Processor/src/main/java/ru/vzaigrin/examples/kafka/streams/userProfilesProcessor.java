@@ -9,7 +9,7 @@ public class userProfilesProcessor implements Processor<Long, UserProfile, Void,
     private KeyValueStore<Long, String> kvUserProfilesStore;
 
     @Override
-    public void init(final ProcessorContext context) {
+    public void init(final ProcessorContext<Void, Void> context) {
         kvUserProfilesStore = context.getStateStore("userProfilesStore");
     }
 

@@ -10,8 +10,7 @@ public class PageViewsProcessor  implements Processor<String, String, String, Pa
     private ProcessorContext<String, PageViewWithRegion> context;
 
     @Override
-    @SuppressWarnings("unchecked")
-    public void init(ProcessorContext context) {
+    public void init(ProcessorContext<String, PageViewWithRegion> context) {
         this.context = context;
         kvPageViewStore = context.getStateStore("pageViewStore");
     }
