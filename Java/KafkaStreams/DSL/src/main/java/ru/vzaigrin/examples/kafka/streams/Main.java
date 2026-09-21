@@ -54,14 +54,11 @@ public class Main {
         KStream<Long, PageView> pageViewKStream = builder.stream(pageViewsTopic, Consumed.with(longSerde, pageViewSerde));
 
         pageViewKStream
-                .join(userProfileKTable,
-                        (leftValue, rightValue) -> KeyValue.pair(rightValue.getRegion(), leftValue.getPage()))
-                .map((key, value) -> KeyValue.pair(value.key.toString(), value.value.toString()))
-                .groupByKey(Grouped.with(stringSerde, stringSerde))
-                .windowedBy(TimeWindows.ofSizeWithNoGrace(Duration.ofMinutes(5)))
+                .join(userProfileKTable, (leftValue, rightValue) -> rightValue.getRegion().toString())
+                .groupBy((key, value) -> value, Grouped.with(stringSerde, stringSerde))
                 .count()
                 .toStream()
-                .map((windowedKey, value) -> KeyValue.pair(windowedKey.key(), new PageViewWithRegion(windowedKey.key(), value)))
+                .map((key, value) -> KeyValue.pair(key, new PageViewWithRegion(key, value)))
                 .to(pageViewWithRegionTopic, Produced.with(stringSerde, pageViewWithRegionSerde))
         ;
 

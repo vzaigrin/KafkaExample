@@ -5,34 +5,29 @@ import org.apache.kafka.streams.processor.api.ProcessorContext;
 import org.apache.kafka.streams.processor.api.Record;
 import org.apache.kafka.streams.state.KeyValueStore;
 
-public class PageViewsProcessor  implements Processor<Long, PageView, String, PageViewWithRegion> {
-    private KeyValueStore<Long, String> userProfilesStore;
-    private KeyValueStore<String, Long> pageViewStore;
+public class PageViewsProcessor  implements Processor<String, String, String, PageViewWithRegion> {
+    private KeyValueStore<String, Long> kvPageViewStore;
     private ProcessorContext<String, PageViewWithRegion> context;
 
     @Override
-    public void init(final ProcessorContext<String, PageViewWithRegion> context) {
+    @SuppressWarnings("unchecked")
+    public void init(ProcessorContext context) {
         this.context = context;
-        userProfilesStore = context.getStateStore("userProfilesStore");
-        pageViewStore = context.getStateStore("pageViewStore");
+        kvPageViewStore = context.getStateStore("pageViewStore");
     }
 
     @Override
-    public void process(final Record<Long, PageView> record) {
-        Long id = record.key();
-        String region = userProfilesStore.get(id);
-        Long count = pageViewStore.get(region);
-
-        if (count == null) count = 1L;
-        else count = count + 1;
-        pageViewStore.put(region, count);
+    public void process(final Record<String, String> record) {
+        String region = record.key();
+        Long preCount = kvPageViewStore.get(region);
+        long count = preCount == null ? 1L : preCount + 1L;
+        kvPageViewStore.put(region, count);
 
         PageViewWithRegion pageViewWithRegion = new PageViewWithRegion();
         pageViewWithRegion.setRegion(region);
         pageViewWithRegion.setPages(count);
 
-        long timestamp = System.currentTimeMillis();
-        context.forward(new Record<>(region, pageViewWithRegion, timestamp));
+        context.forward(new Record<>(region, pageViewWithRegion, record.timestamp()));
     }
 
     @Override
