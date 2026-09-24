@@ -7,7 +7,6 @@ import org.apache.kafka.common.serialization.Serde;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.*;
 import org.apache.kafka.streams.kstream.*;
-import java.time.Duration;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Properties;
@@ -54,8 +53,10 @@ public class Main {
         KStream<Long, PageView> pageViewKStream = builder.stream(pageViewsTopic, Consumed.with(longSerde, pageViewSerde));
 
         pageViewKStream
-                .join(userProfileKTable, (leftValue, rightValue) -> rightValue.getRegion().toString())
-                .groupBy((key, value) -> value, Grouped.with(stringSerde, stringSerde))
+                .join(userProfileKTable,
+                        (leftValue, rightValue) -> KeyValue.pair(rightValue.getRegion(), leftValue.getPage()))
+                .map((key, value) -> KeyValue.pair(value.key.toString(), value.value.toString()))
+                .groupByKey(Grouped.with(stringSerde, stringSerde))
                 .count()
                 .toStream()
                 .map((key, value) -> KeyValue.pair(key, new PageViewWithRegion(key, value)))

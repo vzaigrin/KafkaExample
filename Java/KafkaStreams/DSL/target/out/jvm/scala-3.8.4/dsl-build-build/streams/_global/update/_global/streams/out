@@ -1,0 +1,46 @@
+[debug] not up to date. inChanged = true, force = false
+[debug] Updating ProjectRef(uri("file:/Volumes/Data/Projects/KafkaExample/Java/KafkaStreams/DSL/project/project/"), "dsl-build-build")...
+[warn] 
+[warn] 	Note: Unresolved dependencies path:
+[warn] 		com.github.sbt:sbt-jdi-tools_sbt2_3:1.2.0 (/Volumes/Data/Projects/KafkaExample/Java/KafkaStreams/DSL/project/project/metals.sbt#L13-13)
+[warn] 		  +- default:dsl-build-build_sbt2_3:0.1.0-SNAPSHOT
+[error] sbt.librarymanagement.ResolveException: Error downloading com.github.sbt:sbt-jdi-tools_sbt2_3:1.2.0
+[error]   Not found
+[error]   Not found
+[error]   not found: https://repo1.maven.org/maven2/com/github/sbt/sbt-jdi-tools_sbt2_3/1.2.0/sbt-jdi-tools_sbt2_3-1.2.0.pom
+[error]   not found: /Users/vadim/.ivy2/localcom.github.sbt/sbt-jdi-tools_sbt2_3/1.2.0/ivys/ivy.xml
+[error] 	at lmcoursier.CoursierDependencyResolution.unresolvedWarningOrThrow(CoursierDependencyResolution.scala:574)
+[error] 	at lmcoursier.CoursierDependencyResolution.update$$anonfun$1(CoursierDependencyResolution.scala:423)
+[error] 	at scala.util.Either$LeftProjection.map(Either.scala:621)
+[error] 	at lmcoursier.CoursierDependencyResolution.update(CoursierDependencyResolution.scala:423)
+[error] 	at sbt.librarymanagement.DependencyResolution.update(DependencyResolution.scala:59)
+[error] 	at sbt.internal.LibraryManagement$.resolve$1(LibraryManagement.scala:69)
+[error] 	at sbt.internal.LibraryManagement$.$anonfun$4(LibraryManagement.scala:157)
+[error] 	at sbt.util.Tracked$.lastOutput$$anonfun$1(Tracked.scala:86)
+[error] 	at sbt.internal.LibraryManagement$.$anonfun$3(LibraryManagement.scala:159)
+[error] 	at sbt.internal.LibraryManagement$.$anonfun$adapted$1(LibraryManagement.scala:147)
+[error] 	at sbt.util.Tracked$.inputChangedW$$anonfun$1(Tracked.scala:235)
+[error] 	at sbt.internal.LibraryManagement$.cachedUpdate(LibraryManagement.scala:209)
+[error] 	at sbt.Classpaths$.updateTask0$$anonfun$1(Defaults.scala:4193)
+[error] 	at scala.Function1.$anonfun$compose$1(Function1.scala:79)
+[error] 	at scala.Function1.$anonfun$compose$1(Function1.scala:79)
+[error] 	at sbt.std.Transform$$anon$3.work(Transform.scala:79)
+[error] 	at sbt.std.Transform$$anon$3.work(Transform.scala:79)
+[error] 	at sbt.Execute.submit$$anonfun$1$$anonfun$1(Execute.scala:283)
+[error] 	at sbt.internal.util.ErrorHandling$.wideConvert(ErrorHandling.scala:24)
+[error] 	at sbt.Execute.work(Execute.scala:294)
+[error] 	at sbt.Execute.submit$$anonfun$1(Execute.scala:283)
+[error] 	at sbt.ConcurrentRestrictions$$anon$4.$anonfun$2(ConcurrentRestrictions.scala:269)
+[error] 	at sbt.CompletionService$$anon$2.call(CompletionService.scala:75)
+[error] 	at sbt.CompletionService$$anon$2.call(CompletionService.scala:73)
+[error] 	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+[error] 	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+[error] 	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+[error] 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+[error] 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+[error] 	at java.base/java.lang.Thread.run(Thread.java:840)
+[error] (update) sbt.librarymanagement.ResolveException: Error downloading com.github.sbt:sbt-jdi-tools_sbt2_3:1.2.0
+[error]   Not found
+[error]   Not found
+[error]   not found: https://repo1.maven.org/maven2/com/github/sbt/sbt-jdi-tools_sbt2_3/1.2.0/sbt-jdi-tools_sbt2_3-1.2.0.pom
+[error]   not found: /Users/vadim/.ivy2/localcom.github.sbt/sbt-jdi-tools_sbt2_3/1.2.0/ivys/ivy.xml
